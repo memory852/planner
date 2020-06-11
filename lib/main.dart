@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './transaction.dart';
 
 void main() {
@@ -61,13 +62,13 @@ class MyHomePage extends StatelessWidget {
                           color: Colors.purple,
                           width: 2,
                         ),
-                        boxShadow: 
                       ),
                       child: Text(
-                        tx.amount.toString(),
+                        "\$${tx.amount}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.purple,
+                          fontSize: 20,
                         ),
                       ),
                     ),
@@ -82,7 +83,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat().format(tx.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
