@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import './transaction.dart';
+import 'package:planner/widgets/user_transaction.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,84 +17,29 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-    ),
-  ];
+  // String titleInput;
+  // String amountInput;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter App"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Card(
-            child: Container(color: Colors.green, child: Text("CHART1")),
-            elevation: 5,
-          ),
-          Column(
-            children: transactions.map((tx) {
-              return Card(
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.purple,
-                          width: 2,
-                        ),
-                      ),
-                      child: Text(
-                        "\$${tx.amount}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.purple,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          tx.title,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          DateFormat().format(tx.date),
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              );
-            }).toList(),
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              child: Card(
+                color: Colors.green,
+                child: Text("CHART1"),
+                elevation: 5,
+              ),
+            ),
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
